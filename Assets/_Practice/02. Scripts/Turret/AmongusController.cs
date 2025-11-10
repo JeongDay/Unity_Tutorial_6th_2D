@@ -9,6 +9,7 @@ public class AmongusController : MonoBehaviour
     
     public float moveSpeed = 5f;
     public float turnSpeed = 5f;
+    public float jumpPower = 10f;
 
     void Start()
     {
@@ -20,13 +21,14 @@ public class AmongusController : MonoBehaviour
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         dir = new Vector3(h, 0, v).normalized;
-        
-        Turn();
+
+        Jump();
     }
 
     void FixedUpdate()
     {
         Move();
+        Turn();
     }
 
     public void Move()
@@ -34,6 +36,7 @@ public class AmongusController : MonoBehaviour
         // rb.linearVelocity = dir * moveSpeed;
 
         Vector3 targetPosition = rb.position + dir * moveSpeed;
+        
         rb.MovePosition(targetPosition);
     }
     
@@ -42,8 +45,17 @@ public class AmongusController : MonoBehaviour
         if (dir.x == 0 && dir.z == 0)
             return;
         
-        Quaternion newRotation = Quaternion.LookRotation(dir);
+        Quaternion targetRotation = Quaternion.LookRotation(dir);
+        Quaternion newRotation = Quaternion.Slerp(rb.rotation, targetRotation, turnSpeed);
+        
+        rb.MoveRotation(newRotation);
+    }
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, turnSpeed * Time.deltaTime);
+    public void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+        }
     }
 }
