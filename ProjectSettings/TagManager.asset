@@ -8,6 +8,7 @@ TagManager:
   - Point10
   - Point30
   - Point50
+  - Ground
   layers:
   - Default
   - TransparentFX

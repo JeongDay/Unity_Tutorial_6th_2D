@@ -22,6 +22,8 @@ public class Ball : MonoBehaviour
 
         if (changeColor != null) // 예외 처리
         {
+            Debug.Log("충돌 확인");
+            
             changeColor.HitColor();
         }
         

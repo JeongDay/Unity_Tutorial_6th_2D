@@ -17,6 +17,8 @@ public class ChangeColor : MonoBehaviour
         renderer.color = Color.red;
 
         Invoke("ReturnColor", 0.2f);
+
+        Debug.Log("색 변경");
     }
 
     public void ReturnColor()
