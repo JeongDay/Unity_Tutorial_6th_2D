@@ -32,19 +32,19 @@ public class CharacterMovement2D : MonoBehaviour
 
     private void ChangeSprite()
     {
-        // if (h == 0) // 키를 누르지 않았을 때
-        // {
-        //     renderers[0].gameObject.SetActive(true);
-        //     renderers[1].gameObject.SetActive(false);
-        // }
-        // else // 키를 눌렀을 때
-        // {
-        //     renderers[0].gameObject.SetActive(false);
-        //     renderers[1].gameObject.SetActive(true);
-        // }
+        if (h == 0 && v == 0) // 키를 누르지 않았을 때
+        {
+            renderers[0].gameObject.SetActive(true);
+            renderers[1].gameObject.SetActive(false);
+        }
+        else // 키를 눌렀을 때
+        {
+            renderers[0].gameObject.SetActive(false);
+            renderers[1].gameObject.SetActive(true);
+        }
 
-        renderers[0].gameObject.SetActive(h == 0);
-        renderers[1].gameObject.SetActive(h != 0);
+        // renderers[0].gameObject.SetActive(h == 0);
+        // renderers[1].gameObject.SetActive(h != 0);
 
         if (h < 0) // 왼쪽 바라보는 상태
         {

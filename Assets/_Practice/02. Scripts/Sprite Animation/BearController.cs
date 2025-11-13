@@ -54,7 +54,7 @@ public class BearController : MonoBehaviour
     private void Patrol()
     {
         timer += Time.deltaTime;
-        
+
         if (isPatrol)
         {
             if (timer >= 2f)
@@ -63,7 +63,7 @@ public class BearController : MonoBehaviour
                 bearAnim.SetBool("IsWalk", false);
                 isPatrol = false;
             }
-            
+
             transform.position += Vector3.right * randomDir * moveSpeed * Time.deltaTime;
         }
         else
@@ -79,7 +79,7 @@ public class BearController : MonoBehaviour
 
                 if (randomDir > 0)
                     renderer.flipX = false;
-                else if  (randomDir < 0)
+                else if (randomDir < 0)
                     renderer.flipX = true;
             }
         }
@@ -89,7 +89,10 @@ public class BearController : MonoBehaviour
     {
         Vector3 dir = (target.position - transform.position).normalized; // 타겟을 향하는 방향
 
-        transform.position += dir * moveSpeed * Time.deltaTime;
+        float distance = Vector3.Distance(transform.position, target.position);
+
+        if (distance > 0.9f)
+            transform.position += dir * moveSpeed * Time.deltaTime;
 
         if (dir.x > 0)
             renderer.flipX = false;
@@ -102,12 +105,12 @@ public class BearController : MonoBehaviour
     private void Attack()
     {
         float distance = Vector3.Distance(transform.position, target.position); // 곰과 플레이어 사이의 거리
+        attackTimer += Time.deltaTime; // 타이머 기능
 
         if (distance < attackRange) // 바로 앞에 있을 때
         {
             bearAnim.SetBool("IsRun", false);
 
-            attackTimer += Time.deltaTime; // 타이머 기능
 
             if (attackTimer >= attackCooldown)
             {
