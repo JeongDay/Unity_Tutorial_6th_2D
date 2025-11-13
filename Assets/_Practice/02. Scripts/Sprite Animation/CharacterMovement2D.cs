@@ -21,7 +21,7 @@ public class CharacterMovement2D : MonoBehaviour
         h = Input.GetAxis("Horizontal"); // A, D 키보드에 대한 입력값
         v = Input.GetAxis("Vertical"); // W, S 키보드에 대한 입력값
 
-        ChangeSprite();
+        ChangeSprite(); 
         // Jump();
     }
 
