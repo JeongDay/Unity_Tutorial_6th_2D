@@ -49,5 +49,15 @@ public class StudyRandom : MonoBehaviour
         }
         
         lottoNumbers.Sort(); // 오름차순 정렬
+
+        string msg = "";
+        foreach (var num in lottoNumbers)
+        {
+            msg += num + ", ";
+        }
+
+        Debug.Log("로또 번호 : " + msg);
+
+        // Debug.Log($"이번 주 로또 번호 : {lottoNumbers[0]}, {lottoNumbers[1]}, {lottoNumbers[2]}, {lottoNumbers[3]}, {lottoNumbers[4]}, {lottoNumbers[5]}");
     }
 }
