@@ -2,22 +2,32 @@ using UnityEngine;
 
 public class Pipe : MonoBehaviour
 {
-    private Vector3 startPos;
+    public enum ItemType { None, Pipe, Fruit, All }
+    public ItemType itemType;
 
-    public float moveSpeed = 1f;
+    private GameObject pipeObj;
+    private GameObject fruitObj;
     
+    public float moveSpeed = 1f;
+    private float randomPosY;
+
     void Start()
     {
-        startPos = transform.position;
-    }
+        pipeObj = transform.GetChild(0).gameObject;
+        fruitObj = transform.GetChild(1).gameObject;
 
+        SetType();
+        transform.position = new Vector3(transform.position.x, randomPosY, 0);
+    }
+    
     void Update()
     {
         transform.position += Vector3.left * moveSpeed * Time.deltaTime;
 
-        if (transform.position.x <= -10)
+        if (transform.position.x <= -10f)
         {
-            transform.position = startPos;
+            SetType();
+            transform.position = new Vector3(10f, randomPosY, 0);
         }
     }
 
@@ -26,8 +36,38 @@ public class Pipe : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Game Over");
-
+            
             Time.timeScale = 0f;
+        }
+    }
+
+    private void SetType()
+    {
+        randomPosY = Random.Range(-6.5f, -2.5f);
+        
+        int randomIndex = Random.Range(0, 4); // 0, 1, 2, 3
+
+        fruitObj.SetActive(false); // 미리 Off하는 기능
+        
+        itemType = (ItemType)randomIndex; // 형변환(Type Casting) : 데이터 타입을 변경하는 방법
+        switch (itemType)
+        {
+            case ItemType.None:
+                pipeObj.SetActive(false);
+                fruitObj.SetActive(false);
+                break;
+            case ItemType.Pipe:
+                pipeObj.SetActive(true);
+                fruitObj.SetActive(false);
+                break;
+            case ItemType.Fruit:
+                pipeObj.SetActive(false);
+                fruitObj.SetActive(true);
+                break;
+            case ItemType.All:
+                pipeObj.SetActive(true);
+                fruitObj.SetActive(true);
+                break;
         }
     }
 }
