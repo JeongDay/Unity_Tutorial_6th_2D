@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CatController : MonoBehaviour
 {
+    public CatSoundManager catSound;
+    
     private Rigidbody2D catRb;
     private Animator catAnim;
     
@@ -30,6 +32,7 @@ public class CatController : MonoBehaviour
         }
         else if (other.collider.CompareTag("Pipe"))
         {
+            catSound.EventSound("Collision");
             Debug.Log("Game Over");
             // Time.timeScale = 0f;
         }
@@ -39,6 +42,7 @@ public class CatController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < 3)
         {
+            catSound.EventSound("Jump");
             catAnim.SetTrigger("Jump");
             catAnim.SetBool("IsGround", false);
             catRb.AddForceY(jumpPower, ForceMode2D.Impulse);

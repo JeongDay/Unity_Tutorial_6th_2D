@@ -10,7 +10,7 @@ public class BombSound : MonoBehaviour
     void Start()
     {
         audio = GetComponent<AudioSource>();
-
+        
         BGMSound();
     }
 

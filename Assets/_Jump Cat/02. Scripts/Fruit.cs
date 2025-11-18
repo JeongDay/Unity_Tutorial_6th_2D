@@ -2,7 +2,14 @@ using UnityEngine;
 
 public class Fruit : MonoBehaviour
 {
+    private CatSoundManager catSound;
+    
     public GameObject particleObj;
+
+    void Awake()
+    {
+        catSound = FindFirstObjectByType<CatSoundManager>();
+    }
     
     void OnEnable()
     {
@@ -20,6 +27,7 @@ public class Fruit : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            catSound.EventSound("Eat");
             particleObj.SetActive(true);
             
             gameObject.SetActive(false);
