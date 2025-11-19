@@ -1,8 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LottoManager : MonoBehaviour
 {
+    public LottoBall[] balls;
+
+    public Button lottoButton;
+    
     private List<int> numbers = new List<int>();
     public int shakeCount = 1000;
     
@@ -11,7 +16,7 @@ public class LottoManager : MonoBehaviour
 
     void Start()
     {
-        CreateNumber();
+        lottoButton.onClick.AddListener(CreateNumber);
     }
 
     private void CreateNumber()
@@ -47,8 +52,20 @@ public class LottoManager : MonoBehaviour
         {
             lottoNumbers.Add(numbers[i]); // 섞인 numbers의 숫자 6개를 lottoNumbers로 복사하는 기능
         }
-
+        
         lottoNumbers.Sort(); // 오름차순 정렬
         bonusNumber = numbers[6]; // 보너스 넘버 복사
+
+        for (int i = 0; i < 6; i++)
+        {
+            balls[i].SetNumber(lottoNumbers[i]);
+        }
+        
+        balls[6].SetNumber(bonusNumber);
+
+        for (int i = 0; i < balls.Length; i++)
+        {
+            balls[i].gameObject.SetActive(true);
+        }
     }
 }
