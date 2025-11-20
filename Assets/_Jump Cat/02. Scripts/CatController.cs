@@ -3,6 +3,7 @@ using UnityEngine;
 public class CatController : MonoBehaviour
 {
     public CatSoundManager catSound;
+    public CatUIManager catUI;
     
     private Rigidbody2D catRb;
     private Animator catAnim;
@@ -30,11 +31,13 @@ public class CatController : MonoBehaviour
             jumpCount = 0;
             catAnim.SetBool("IsGround", true);
         }
-        else if (other.collider.CompareTag("Pipe"))
+        
+        if (other.collider.CompareTag("Pipe"))
         {
             catSound.EventSound("Collision");
+            catUI.GameOver();
+            
             Debug.Log("Game Over");
-            // Time.timeScale = 0f;
         }
     }
     

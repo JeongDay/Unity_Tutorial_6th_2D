@@ -5,29 +5,101 @@ using UnityEngine.UI;
 public class CatUIManager : MonoBehaviour
 {
     public CatSoundManager sound;
-    
+    public GameObject cat;
+
     public TMP_InputField inputUI;
     public TextMeshProUGUI catNameUI;
     public TextMeshProUGUI fruitCountUI;
     public TextMeshProUGUI timerUI;
 
+    public TextMeshProUGUI gameOverTime;
+    public TextMeshProUGUI gameOverFruitCount;
+
     public Button startButton;
 
     public GameObject introUI;
-    public GameObject playObj;
+    public GameObject[] playObjs;
+    public GameObject outroUI;
 
     public static int fruitCount; // 정적변수
+    private float timer;
+    public bool isPlay;
 
     void Start()
     {
         startButton.onClick.AddListener(StartEvent); // 스타트 버튼에 StartEvent 함수 등록
+
+        introUI.SetActive(true);
+
+        foreach (var obj in playObjs)
+            obj.SetActive(false);
+
+        outroUI.SetActive(false);
     }
-    
+
+    void Update()
+    {
+        if (!isPlay)
+            return;
+
+        SetFruitCount();
+        SetTimer();
+    }
+
     private void StartEvent() // Intro -> Play
     {
+        if (inputUI.text.Length == 0)
+        {
+            Debug.Log("고양이의 이름을 작성하세요.");
+            return;
+        }
+
+        isPlay = true;
         sound.BGMSound(1); // Play 배경음악
         catNameUI.text = inputUI.text; // 입력한 텍스트를 고양이 이름에 적용
-        playObj.SetActive(true);
+
+        foreach (var obj in playObjs)
+            obj.SetActive(true);
+
         introUI.SetActive(false);
     }
+
+    private void SetFruitCount()
+    {
+        fruitCountUI.text = $"X {fruitCount}";
+    }
+
+    private void SetTimer()
+    {
+        timer += Time.deltaTime;
+        timerUI.text = $"{timer:F1}초";
+
+        // timer = Time.time; // 유니티 실행한 시점으로부터의 누적 시간
+        // sec += Time.deltaTime;
+        // if (sec >= 60f)
+        // {
+        //     sec -= 60f;
+        //     min++;
+        // }
+        //
+        // timerUI.text = $"{min} : {sec:F0}";
+    }
+
+    public void GameOver()
+    {
+        outroUI.SetActive(true);
+
+        isPlay = false;
+        gameOverTime.text = $"플레이 시간 : {timer:F1}초";
+        gameOverFruitCount.text = $"획득한 과일의 수 : {fruitCount}개";
+        
+        cat.GetComponent<CircleCollider2D>().enabled = false;
+        
+        // Invoke(nameof(DelayStop), 1.5f);
+    }
+
+    // private void DelayStop()
+    // {
+    //     Time.timeScale = 0;
+    // }
 }

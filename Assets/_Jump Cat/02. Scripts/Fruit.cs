@@ -28,6 +28,7 @@ public class Fruit : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             CatUIManager.fruitCount++;
+            
             catSound.EventSound("Eat");
             particleObj.SetActive(true);
             
