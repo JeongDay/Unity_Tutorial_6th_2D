@@ -1,22 +1,30 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StudyCoroutine : MonoBehaviour
 {
-    void Start()
+    public Image fadeUI;
+
+    void Update()
     {
-        StartCoroutine("Routine");
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(FadeRoutine());
+        }
     }
 
-    IEnumerator Routine()
+    IEnumerator FadeRoutine()
     {
-        yield return null; // 1 프레임 대기
-        Debug.Log("1초");
-        
-        yield return new WaitForSeconds(1f);
-        Debug.Log("2초");
-        
-        yield return new WaitForSeconds(1f);
-        Debug.Log("3초");
+        Color newColor = fadeUI.color;
+
+        while (true)
+        {
+            yield return null;
+
+            newColor.a = Mathf.Lerp(newColor.a, 1f, Time.deltaTime);
+
+            fadeUI.color = newColor;
+        }
     }
 }
