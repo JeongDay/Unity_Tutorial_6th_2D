@@ -35,7 +35,8 @@ public class CatFade : MonoBehaviour
             timer += Time.deltaTime;
             percent = timer / fadeTime; // 퍼센트값 연산
 
-            newColor.a = Mathf.Lerp(0f, 1f, percent); // 이미지의 알파값 수정
+            newColor.a = Mathf.Lerp(0f / 255f, 255f/ 255f, percent); // 이미지의 알파값 수정
+            
             fadeUI.color = newColor; // 수정된 알파값을 적용
 
             if (percent >= 1f)
