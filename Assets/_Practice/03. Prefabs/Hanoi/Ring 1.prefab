@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 1815611129316158648}
   - component: {fileID: 4554226416744828784}
   - component: {fileID: 9167823177050854056}
+  - component: {fileID: -2986844799838063955}
   m_Layer: 0
   m_Name: Ring 1
   m_TagString: Untagged
@@ -11864,6 +11865,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-2986844799838063955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6913586919906219838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6ceccb33ecaaf41a171d5fa74d46a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ringNumber: 1
 --- !u!1 &8551864730126837659
 GameObject:
   m_ObjectHideFlags: 0

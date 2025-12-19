@@ -243,13 +243,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40efad8af4332e941b51f5efe444005b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hanoiLevel: 3
+  hanoiLevel: 5
   ringPrefabs:
   - {fileID: 9134998841545699140, guid: 4eac6ca96be1cb249931dbecdf59ad4d, type: 3}
   - {fileID: 6913586919906219838, guid: aad07a478ad2ff343b41f7b34a6bbd04, type: 3}
   - {fileID: 4092875959783831894, guid: fdd65ee677be0324aa823aead33e37ef, type: 3}
   - {fileID: 3380676798577239872, guid: 315de7d4518edd8468a756c9f5edb184, type: 3}
   - {fileID: 7713477871805266467, guid: d065f626a7eadcb4a8c4cc1784e2ae9a, type: 3}
+  sticks:
+  - {fileID: 1060749971}
+  - {fileID: 1889179254}
+  - {fileID: 1975560682}
+  stackPreView1: []
+  stackPreView2: []
+  stackPreView3: []
 --- !u!1 &1060749965
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,7 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab16a7c4c129004fb5d1c395835498a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stickType: 0
+  stickType: -7
 --- !u!1 &1158083242
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,7 +806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab16a7c4c129004fb5d1c395835498a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stickType: 1
+  stickType: 0
 --- !u!1 &1975560676
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,7 +952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab16a7c4c129004fb5d1c395835498a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stickType: 2
+  stickType: 7
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
