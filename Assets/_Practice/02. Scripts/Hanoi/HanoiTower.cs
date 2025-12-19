@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class HanoiTower : MonoBehaviour
@@ -11,14 +11,14 @@ public class HanoiTower : MonoBehaviour
     [SerializeField] private GameObject[] ringPrefabs;
 
     [SerializeField] private BoardStick[] sticks;
-
-    public List<GameObject> stackPreView1 = new List<GameObject>();
-    public List<GameObject> stackPreView2 = new List<GameObject>();
-    public List<GameObject> stackPreView3 = new List<GameObject>();
-
-
+    
     public static GameObject selectedRing;
     public static bool isSelected;
+
+    private int moveCount;
+
+    public TextMeshProUGUI selectedText;
+    public TextMeshProUGUI countText;
 
     IEnumerator Start()
     {
@@ -27,17 +27,24 @@ public class HanoiTower : MonoBehaviour
             GameObject ring = Instantiate(ringPrefabs[i]);
 
             ring.transform.position = new Vector3(-7f, 5f, 0); // Left Stick 위에 생성
-
-            sticks[0].stack.Push(ring); // Left Stick의 스택 자료구조에 데이터 추가
+            
+            sticks[0].PushRing(ring);
 
             yield return new WaitForSeconds(1f);
         }
+
+        countText.text = $"옮긴 횟수 : 0";
     }
 
-    void Update()
+    public void SetSelectedRing()
     {
-        stackPreView1 = sticks[0].stack.ToList();
-        stackPreView2 = sticks[1].stack.ToList();
-        stackPreView3 = sticks[2].stack.ToList();
+        string newStr = selectedRing.name.Replace("(Clone)", "");
+        selectedText.text = $"선택한 링 이름 : {newStr}";
+    }
+
+    public void AddMoveCount()
+    {
+        moveCount++;
+        countText.text = $"옮긴 횟수 : {moveCount.ToString()}";
     }
 }
