@@ -58,4 +58,24 @@ public class StudyTree : MonoBehaviour
             PrintTreeNode(node.children[i]);
         }
     }
+
+    private void FindMax()
+    {
+        int[] array = new int[10] { 1, 10, 2, 5, 3, 1, 13, 4, 7, 9 };
+        int maxValue = 0;
+        
+        for (int i = 0; i < 10; i++)
+        {
+            if (i == 0)
+            {
+                maxValue = array[0];
+                continue;
+            }
+
+            if (array[i] > maxValue)
+            {
+                maxValue = array[i];
+            }
+        }
+    }
 }
