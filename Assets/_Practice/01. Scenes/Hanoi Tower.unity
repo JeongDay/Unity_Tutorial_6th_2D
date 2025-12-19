@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40efad8af4332e941b51f5efe444005b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hanoiLevel: 4
+  hanoiLevel: 3
   ringPrefabs:
   - {fileID: 9134998841545699140, guid: 4eac6ca96be1cb249931dbecdf59ad4d, type: 3}
   - {fileID: 6913586919906219838, guid: aad07a478ad2ff343b41f7b34a6bbd04, type: 3}

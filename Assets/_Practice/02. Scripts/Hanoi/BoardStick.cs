@@ -10,7 +10,7 @@ public class BoardStick : MonoBehaviour
 
     public Stack<GameObject> stack = new Stack<GameObject>();
 
-    void Start()
+    void Awake()
     {
         hanoiTower = transform.parent.GetComponent<HanoiTower>();
     }
@@ -37,7 +37,7 @@ public class BoardStick : MonoBehaviour
     {
         if (!CheckRing(ring))
             return;
-        
+
         ring.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         ring.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 
@@ -47,8 +47,9 @@ public class BoardStick : MonoBehaviour
         HanoiTower.selectedRing = null;
         
         hanoiTower.AddMoveCount();
+        hanoiTower.SetSelectedRing("선택한 링 이름 : 없음");
         stack.Push(ring);
-
+        
         if (CompletedHanoiTower())
         {
             Debug.Log("<color=green>하노이 타워 완료!</color>");

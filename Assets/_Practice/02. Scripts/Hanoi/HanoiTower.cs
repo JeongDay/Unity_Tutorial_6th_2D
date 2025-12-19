@@ -33,13 +33,21 @@ public class HanoiTower : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
 
+        moveCount = 0;
         countText.text = $"옮긴 횟수 : 0";
     }
 
-    public void SetSelectedRing()
+    public void SetSelectedRing(string msg = null)
     {
-        string newStr = selectedRing.name.Replace("(Clone)", "");
-        selectedText.text = $"선택한 링 이름 : {newStr}";
+        if (msg == null)
+        {
+            string newStr = selectedRing.name.Replace("(Clone)", "");
+            selectedText.text = $"선택한 링 이름 : {newStr}";
+        }
+        else
+        {
+            selectedText.text = msg;
+        }
     }
 
     public void AddMoveCount()
