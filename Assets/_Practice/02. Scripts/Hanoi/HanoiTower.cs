@@ -66,15 +66,17 @@ public class HanoiTower : MonoBehaviour
         {
             Debug.Log($"{n}번 링을 {from}에서 {to}로 이동");
             MoveRing(from, to);
+            yield return new WaitForSeconds(1f);
         }
         else
         {
-            HanoiRecursion(n - 1, from, to, temp);
+            yield return StartCoroutine(HanoiRecursion(n - 1, from, to, temp));
             
             Debug.Log($"{n}번 링을 {from}에서 {to}로 이동");
             MoveRing(from, to);
-            
-            HanoiRecursion(n - 1, temp, from, to);
+            yield return new WaitForSeconds(1f);
+
+            yield return StartCoroutine(HanoiRecursion(n - 1, temp, from, to));
         }
     }
     
