@@ -33,6 +33,18 @@ public class BoardStick : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 알고리듬이 자동으로 링을 꺼내기 위한 기능
+    /// </summary>
+    /// <returns></returns>
+    public GameObject PopRing2()
+    {
+        if (stack.Count > 0)
+            return stack.Pop();
+
+        return null;
+    }
+
     public void PushRing(GameObject ring)
     {
         if (!CheckRing(ring))
