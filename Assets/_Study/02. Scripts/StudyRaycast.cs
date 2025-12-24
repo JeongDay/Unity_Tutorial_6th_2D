@@ -7,15 +7,11 @@ public class StudyRaycast : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hitInfo;
+        RaycastHit hitInfo;
 
-            if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layerMask))
-            {
-                Debug.Log($"선택한 오브젝트 : {hitInfo.collider.name}");
-            }
+        if (Physics.BoxCast(transform.position, Vector3.one * 0.5f, transform.forward, out hitInfo, transform.rotation, 10f))
+        {
+            
         }
     }
 }
